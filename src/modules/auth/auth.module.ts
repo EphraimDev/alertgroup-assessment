@@ -19,7 +19,7 @@ import { UsersModule } from '../users/users.module';
     }),
     UsersModule, JwtModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, ConfigService],
   controllers: [AuthController],
 })
 export class AuthModule {}

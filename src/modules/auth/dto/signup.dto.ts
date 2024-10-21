@@ -41,18 +41,26 @@ const validatePassword = (str: string, helpers: any) => {
 };
 
 export const signUpBodySchema = Joi.object({
-  firstName: Joi.string().required(),
-  lastName: Joi.string().required(),
-  email: Joi.string()
-    .email()
+  firstName: Joi.string()
     .required()
-    .messages({ 'string.email': 'Please enter a valid email' }),
+    .messages({ 'any.required': 'First name is required' }),
+  lastName: Joi.string()
+    .required()
+    .messages({ 'any.required': 'Last name is required' }),
+  email: Joi.string().email().required().messages({
+    'string.email': 'Please enter a valid email',
+    'any.required': 'Email is required',
+  }),
   password: Joi.string().required().custom(validatePassword).messages({
+    'any.required': 'Password is required',
     'any.invalid':
       'Your password must contain at least eight characters, one uppercase letter, one lowercase letter, one digit and one special character.',
   }),
   confirmPassword: Joi.string()
     .valid(Joi.ref('password'))
     .required()
-    .messages({ 'any.only': 'Confirm password must be the same as password.' }),
+    .messages({
+      'any.only': 'Confirm password must be the same as password.',
+      'any.required': 'Confirm password is required',
+    }),
 });

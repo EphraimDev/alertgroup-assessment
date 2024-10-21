@@ -5,7 +5,7 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { IRequest } from '../types';
-import { RoleService } from 'src/modules/roles/roles.service';
+import { RoleService } from '../../../src/modules/roles/roles.service';
 
 @Injectable()
 export class AdminGuard implements CanActivate {

@@ -13,11 +13,12 @@ export class LoginDto {
   readonly password: string;
 }
 
-
 export const loginBodySchema = Joi.object({
-  email: Joi.string()
-    .email()
+  email: Joi.string().email().required().messages({
+    'string.email': 'Please enter a valid email',
+    'any.required': 'Email is required',
+  }),
+  password: Joi.string()
     .required()
-    .messages({ 'string.email': 'Please enter a valid email' }),
-  password: Joi.string().required(),
+    .messages({ 'any.required': 'Password is required' }),
 });

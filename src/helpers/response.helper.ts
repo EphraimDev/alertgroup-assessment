@@ -6,7 +6,7 @@ import {
   CallHandler,
   NestInterceptor,
 } from '@nestjs/common';
-import { LoggerUtils } from 'src/utils/logger.util';
+import { LoggerUtils } from '../../src/utils/logger.util';
 
 @Injectable()
 export class ResponseInterceptor implements NestInterceptor {

@@ -1,18 +1,16 @@
 import {
   BadRequestException,
-  HttpStatus,
   Injectable,
   InternalServerErrorException,
-  Logger,
   NotFoundException,
 } from '@nestjs/common';
 import { Prisma, User } from '@prisma/client';
-import { PrismaService } from 'src/database/prisma.service';
+import { PrismaService } from '../../../src/database/prisma.service';
 import { AssignRoleDto } from './dto/assign-role.dto';
 import { RoleService } from '../roles/roles.service';
 
 @Injectable()
-export class UserService {
+export class UsersService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly roleService: RoleService,
@@ -90,12 +88,8 @@ export class UserService {
   }
 
   async fetchAllUsers() {
-    try {
-      const users = await this.findMany({});
-      return users;
-    } catch (error) {
-      throw new InternalServerErrorException(error.message);
-    }
+    const users = await this.findMany({});
+    return users;
   }
 
   async deleteUser(id: number) {

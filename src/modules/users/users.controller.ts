@@ -10,17 +10,17 @@ import {
   UseGuards,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { AdminGuard } from 'src/common/guards/admin.guard';
-import { AuthGuard } from 'src/common/guards/auth.guard';
+import { AdminGuard } from '../../../src/common/guards/admin.guard';
+import { AuthGuard } from '../../../src/common/guards/auth.guard';
 import { assignRoleBodySchema, AssignRoleDto } from './dto/assign-role.dto';
-import { ValidatorPipe } from 'src/common/pipes/validation.pipes';
-import { UserService } from './users.service';
+import { ValidatorPipe } from '../../../src/common/pipes/validation.pipes';
+import { UsersService } from './users.service';
 import { DeleteUserDto, deleteUserParamSchema } from './dto/delete-user.dto';
 
 @ApiTags('Users')
 @Controller('users')
 export class UsersController {
-  constructor(private readonly userService: UserService) {}
+  constructor(private readonly userService: UsersService) {}
 
   @ApiBearerAuth()
   @UseGuards(AuthGuard)

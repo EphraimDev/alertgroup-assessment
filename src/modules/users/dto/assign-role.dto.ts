@@ -14,6 +14,10 @@ export class AssignRoleDto {
 }
 
 export const assignRoleBodySchema = Joi.object({
-  userId: Joi.number().required(),
-  roleId: Joi.number().required(),
+  userId: Joi.number()
+    .required()
+    .messages({ 'any.required': 'UserId is required' }),
+  roleId: Joi.number()
+    .required()
+    .messages({ 'any.required': 'RoleId is required' }),
 });
